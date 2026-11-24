@@ -15,6 +15,23 @@
       <input id="posterInput" type="file" accept="image/*" multiple />
     </div>
 
+    <div class="settings">
+      <label>
+        Rows
+        <input id="columnsInput" type="number" min="1" value="5" />
+      </label>
+
+      <label>
+        Gap
+        <input id="gapInput" type="number" min="0" value="10" />
+      </label>
+
+      <label>
+        Background
+        <input id="backgroundInput" type="color" value="#202020" />
+      </label>
+    </div>
+
     <div id="posterGrid"></div>
 
     <script src="script.js"></script>
