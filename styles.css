@@ -51,6 +51,21 @@ button:hover {
   height: 270px;
   background: #333;
   overflow: hidden;
+  cursor: grab;
+  position: relative;
+}
+
+.poster:active {
+  cursor: grabbing;
+}
+
+.poster.dragging {
+  opacity: 0.4;
+}
+
+.poster.drag-over {
+  outline: 3px solid #fff;
+  outline-offset: -3px;
 }
 
 .poster img {
