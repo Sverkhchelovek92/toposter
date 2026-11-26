@@ -135,6 +135,28 @@ function setupDragAndDrop(poster) {
   })
 }
 
+// Indicator
+
+function showDropIndicator(poster, isLeft) {
+  removeDropIndicator()
+
+  const indicator = document.createElement('div')
+  indicator.classList.add('drop-indicator')
+
+  const rect = poster.getBoundingClientRect()
+  const gridRect = posterGrid.getBoundingClientRect()
+
+  if (isLeft) {
+    indicator.style.left = `${rect.left - gridRect.left - 2}px`
+  } else {
+    indicator.style.left = `${rect.right - gridRect.left - 1}px`
+  }
+
+  indicator.style.top = `${rect.top - gridRect.top}px`
+
+  posterGrid.append(indicator)
+}
+
 // Update
 
 function updateGrid() {
