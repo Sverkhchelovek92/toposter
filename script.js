@@ -157,6 +157,14 @@ function showDropIndicator(poster, isLeft) {
   posterGrid.append(indicator)
 }
 
+function removeDropIndicator() {
+  const indicator = document.querySelector('.drop-indicator')
+
+  if (indicator) {
+    indicator.remove()
+  }
+}
+
 // Update
 
 function updateGrid() {
