@@ -44,6 +44,7 @@ button:hover {
   display: grid;
   grid-template-columns: repeat(5, 180px);
   gap: 10px;
+  position: relative;
 }
 
 .poster {
