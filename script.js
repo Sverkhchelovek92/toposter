@@ -92,21 +92,28 @@ function setupDragAndDrop(poster) {
     draggedPoster = null
     poster.classList.remove('dragging')
 
-    document.querySelectorAll('.poster').forEach((poster) => {
-      poster.classList.remove('drag-over')
-    })
+    removeDropIndicator()
   })
 
   poster.addEventListener('dragover', (event) => {
     event.preventDefault()
 
-    if (poster !== draggedPoster) {
-      poster.classList.add('drag-over')
+    if (poster === draggedPoster) {
+      return
     }
+
+    const rect = poster.getBoundingClientRect()
+    const mouseX = event.clientX
+
+    const isLeftHalf = mouseX < rect.left + rect.width / 2
+
+    showDropIndicator(poster, isLeftHalf)
   })
 
-  poster.addEventListener('dragleave', () => {
-    poster.classList.remove('drag-over')
+  poster.addEventListener('dragleave', (event) => {
+    if (!poster.contains(event.relatedTarget)) {
+      removeDropIndicator()
+    }
   })
 
   poster.addEventListener('drop', (event) => {
@@ -116,20 +123,14 @@ function setupDragAndDrop(poster) {
       return
     }
 
-    const draggedId = draggedPoster.dataset.id
-    const targetId = poster.dataset.id
+    const rect = poster.getBoundingClientRect()
+    const mouseX = event.clientX
 
-    const draggedIndex = posters.findIndex((poster) => poster.id === draggedId)
+    const isLeftHalf = mouseX < rect.left + rect.width / 2
 
-    const targetIndex = posters.findIndex((poster) => poster.id === targetId)
+    movePoster(poster, isLeftHalf)
 
-    const temp = posters[draggedIndex]
-
-    posters[draggedIndex] = posters[targetIndex]
-    posters[targetIndex] = temp
-
-    poster.classList.remove('drag-over')
-
+    removeDropIndicator()
     renderPosters()
   })
 }
