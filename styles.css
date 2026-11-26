@@ -75,6 +75,15 @@ button:hover {
   display: block;
 }
 
+.drop-indicator {
+  position: absolute;
+  width: 3px;
+  height: 270px;
+  background: white;
+  pointer-events: none;
+  z-index: 10;
+}
+
 .settings {
   display: flex;
   align-items: center;
