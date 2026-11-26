@@ -165,6 +165,29 @@ function removeDropIndicator() {
   }
 }
 
+function movePoster(targetPoster, insertBefore) {
+  const draggedId = draggedPoster.dataset.id
+  const targetId = targetPoster.dataset.id
+
+  const draggedIndex = posters.findIndex((poster) => poster.id === draggedId)
+
+  let targetIndex = posters.findIndex((poster) => poster.id === targetId)
+
+  const draggedData = posters[draggedIndex]
+
+  posters.splice(draggedIndex, 1)
+
+  if (draggedIndex < targetIndex) {
+    targetIndex--
+  }
+
+  if (!insertBefore) {
+    targetIndex++
+  }
+
+  posters.splice(targetIndex, 0, draggedData)
+}
+
 // Update
 
 function updateGrid() {
