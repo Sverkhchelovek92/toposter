@@ -71,8 +71,19 @@ function renderPosters() {
     const image = document.createElement('img')
     image.src = posterData.url
 
+    const deleteButton = document.createElement('button')
+    deleteButton.classList.add('delete-button')
+    deleteButton.textContent = '×'
+
+    deleteButton.addEventListener('click', (event) => {
+      event.stopPropagation()
+
+      removePoster(posterData.id)
+    })
+
     poster.append(image)
     posterGrid.append(poster)
+    poster.append(deleteButton)
 
     setupDragAndDrop(poster)
   }
