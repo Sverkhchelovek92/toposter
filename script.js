@@ -91,6 +91,24 @@ function renderPosters() {
   updateGrid()
 }
 
+// Delete poster
+
+function removePoster(id) {
+  const index = posters.findIndex((poster) => poster.id === id)
+
+  if (index === -1) {
+    return
+  }
+
+  const poster = posters[index]
+
+  URL.revokeObjectURL(poster.url)
+
+  posters.splice(index, 1)
+
+  renderPosters()
+}
+
 // Drag & drop
 
 function setupDragAndDrop(poster) {
